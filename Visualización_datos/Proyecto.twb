@@ -1,0 +1,2194 @@
+<?xml version='1.0' encoding='utf-8' ?>
+
+<!-- build 20211.21.0511.0935                               -->
+<workbook source-build='2021.1.2 (20211.21.0511.0935)' source-platform='win' version='18.1' xmlns:user='http://www.tableausoftware.com/xml/user'>
+  <document-format-change-manifest>
+    <AutoCreateAndUpdateDSDPhoneLayouts />
+    <_.fcp.MarkAnimation.true...MarkAnimation />
+    <_.fcp.ObjectModelEncapsulateLegacy.true...ObjectModelEncapsulateLegacy />
+    <_.fcp.ObjectModelTableType.true...ObjectModelTableType />
+    <_.fcp.SchemaViewerObjectModel.true...SchemaViewerObjectModel />
+    <_.fcp.SetMembershipControl.true...SetMembershipControl />
+    <SheetIdentifierTracking />
+    <SpecificWebTargetsForActions />
+    <WindowsPersistSimpleIdentifiers />
+    <WorksheetBackgroundTransparency />
+  </document-format-change-manifest>
+  <preferences>
+    <preference name='ui.encoding.shelf.height' value='24' />
+    <preference name='ui.shelf.height' value='26' />
+  </preferences>
+  <datasources>
+    <datasource caption='detection+ (proyecto)' inline='true' name='federated.1ydt45j0lul06k1fg2c3h1dgnwij' version='18.1'>
+      <connection class='federated'>
+        <named-connections>
+          <named-connection caption='34.79.94.25' name='postgres.02sfjif0rqq7bq14aycsm0fipthm'>
+            <connection authentication='username-password' class='postgres' dbname='proyecto' one-time-sql='' port='5432' server='34.79.94.25' username='postgres' />
+          </named-connection>
+        </named-connections>
+        <_.fcp.ObjectModelEncapsulateLegacy.false...relation join='left' type='join'>
+          <clause type='join'>
+            <expression op='AND'>
+              <expression op='='>
+                <expression op='[shoplist_agregado].[date_created]' />
+                <expression op='[detection_agregado].[date_created]' />
+              </expression>
+              <expression op='='>
+                <expression op='[shoplist_agregado].[product]' />
+                <expression op='[detection_agregado].[product]' />
+              </expression>
+            </expression>
+          </clause>
+          <relation connection='postgres.02sfjif0rqq7bq14aycsm0fipthm' name='shoplist_agregado' type='text'>SELECT date_created, product, SUM(qty_pieces_wished) sum_qty_pieces_wished&#13;
+FROM shoplist&#13;
+GROUP BY date_created, product</relation>
+          <relation connection='postgres.02sfjif0rqq7bq14aycsm0fipthm' name='detection_agregado' type='text'>SELECT Date_Created, Product, SUM(Qty_Detected) sum_qty_detected&#13;
+FROM detection&#13;
+GROUP BY Date_Created, Product</relation>
+        </_.fcp.ObjectModelEncapsulateLegacy.false...relation>
+        <_.fcp.ObjectModelEncapsulateLegacy.true...relation type='collection'>
+          <relation connection='postgres.02sfjif0rqq7bq14aycsm0fipthm' name='detection' table='[public].[detection]' type='table' />
+          <relation join='left' type='join'>
+            <clause type='join'>
+              <expression op='AND'>
+                <expression op='='>
+                  <expression op='[shoplist_agregado].[date_created]' />
+                  <expression op='[detection_agregado].[date_created]' />
+                </expression>
+                <expression op='='>
+                  <expression op='[shoplist_agregado].[product]' />
+                  <expression op='[detection_agregado].[product]' />
+                </expression>
+              </expression>
+            </clause>
+            <relation connection='postgres.02sfjif0rqq7bq14aycsm0fipthm' name='shoplist_agregado' type='text'>SELECT date_created, product, SUM(qty_pieces_wished) sum_qty_pieces_wished&#13;
+FROM shoplist&#13;
+GROUP BY date_created, product</relation>
+            <relation connection='postgres.02sfjif0rqq7bq14aycsm0fipthm' name='detection_agregado' type='text'>SELECT Date_Created, Product, SUM(Qty_Detected) sum_qty_detected&#13;
+FROM detection&#13;
+GROUP BY Date_Created, Product</relation>
+          </relation>
+          <relation join='left' type='join'>
+            <clause type='join'>
+              <expression op='='>
+                <expression op='[Eroski_prices].[category]' />
+                <expression op='[equivalencies3].[product]' />
+              </expression>
+            </clause>
+            <relation connection='postgres.02sfjif0rqq7bq14aycsm0fipthm' name='Eroski_prices' type='text'>SELECT supermercado, fecha, category, MIN(precio_kg) min_precio_kg&#13;
+FROM stores&#13;
+WHERE supermercado = &apos;Eroski&apos;&#13;
+GROUP BY supermercado, fecha, category&#13;
+ORDER BY fecha</relation>
+            <relation connection='postgres.02sfjif0rqq7bq14aycsm0fipthm' name='equivalencies3' table='[public].[equivalencies]' type='table' />
+          </relation>
+          <relation join='left' type='join'>
+            <clause type='join'>
+              <expression op='='>
+                <expression op='[Carrefour_prices].[category]' />
+                <expression op='[equivalencies2].[product]' />
+              </expression>
+            </clause>
+            <relation connection='postgres.02sfjif0rqq7bq14aycsm0fipthm' name='Carrefour_prices' type='text'>SELECT supermercado, fecha, category, MIN(precio_kg) min_precio_kg&#13;
+FROM stores&#13;
+WHERE supermercado = &apos;Carrefour&apos;&#13;
+GROUP BY supermercado, fecha, category&#13;
+ORDER BY fecha</relation>
+            <relation connection='postgres.02sfjif0rqq7bq14aycsm0fipthm' name='equivalencies2' table='[public].[equivalencies]' type='table' />
+          </relation>
+          <relation connection='postgres.02sfjif0rqq7bq14aycsm0fipthm' name='equivalencies' table='[public].[equivalencies]' type='table' />
+          <relation connection='postgres.02sfjif0rqq7bq14aycsm0fipthm' name='shoplist1' table='[public].[shoplist]' type='table' />
+          <relation connection='postgres.02sfjif0rqq7bq14aycsm0fipthm' name='stores' table='[public].[stores]' type='table' />
+        </_.fcp.ObjectModelEncapsulateLegacy.true...relation>
+        <cols>
+          <map key='[categoria]' value='[stores].[categoria]' />
+          <map key='[category (Consulta SQL personalizada)]' value='[Carrefour_prices].[category]' />
+          <map key='[category (Consulta SQL personalizada1)]' value='[Eroski_prices].[category]' />
+          <map key='[category]' value='[stores].[category]' />
+          <map key='[date_created (Consulta SQL personalizada2)]' value='[shoplist_agregado].[date_created]' />
+          <map key='[date_created (Consulta SQL personalizada3)]' value='[detection_agregado].[date_created]' />
+          <map key='[date_created (equivalencies)]' value='[equivalencies].[date_created]' />
+          <map key='[date_created (equivalencies2)]' value='[equivalencies2].[date_created]' />
+          <map key='[date_created (equivalencies3)]' value='[equivalencies3].[date_created]' />
+          <map key='[date_created (shoplist1)]' value='[shoplist1].[date_created]' />
+          <map key='[date_created]' value='[detection].[date_created]' />
+          <map key='[fecha (Consulta SQL personalizada)]' value='[Carrefour_prices].[fecha]' />
+          <map key='[fecha (Consulta SQL personalizada1)]' value='[Eroski_prices].[fecha]' />
+          <map key='[fecha]' value='[stores].[fecha]' />
+          <map key='[id_detection]' value='[detection].[id_detection]' />
+          <map key='[image_url]' value='[detection].[image_url]' />
+          <map key='[min_precio_kg (Consulta SQL personalizada1)]' value='[Eroski_prices].[min_precio_kg]' />
+          <map key='[min_precio_kg]' value='[Carrefour_prices].[min_precio_kg]' />
+          <map key='[peso_gr]' value='[stores].[peso_gr]' />
+          <map key='[precio]' value='[stores].[precio]' />
+          <map key='[precio_kg]' value='[stores].[precio_kg]' />
+          <map key='[product (Consulta SQL personalizada2)]' value='[shoplist_agregado].[product]' />
+          <map key='[product (Consulta SQL personalizada3)]' value='[detection_agregado].[product]' />
+          <map key='[product (equivalencies)]' value='[equivalencies].[product]' />
+          <map key='[product (equivalencies2)]' value='[equivalencies2].[product]' />
+          <map key='[product (equivalencies3)]' value='[equivalencies3].[product]' />
+          <map key='[product (shoplist1)]' value='[shoplist1].[product]' />
+          <map key='[product]' value='[detection].[product]' />
+          <map key='[qty_detected]' value='[detection].[qty_detected]' />
+          <map key='[qty_kg (equivalencies2)]' value='[equivalencies2].[qty_kg]' />
+          <map key='[qty_kg (equivalencies3)]' value='[equivalencies3].[qty_kg]' />
+          <map key='[qty_kg]' value='[equivalencies].[qty_kg]' />
+          <map key='[qty_pieces (equivalencies2)]' value='[equivalencies2].[qty_pieces]' />
+          <map key='[qty_pieces (equivalencies3)]' value='[equivalencies3].[qty_pieces]' />
+          <map key='[qty_pieces]' value='[equivalencies].[qty_pieces]' />
+          <map key='[qty_pieces_wished (shoplist1)]' value='[shoplist1].[qty_pieces_wished]' />
+          <map key='[subcategoria]' value='[stores].[subcategoria]' />
+          <map key='[sum_qty_detected]' value='[detection_agregado].[sum_qty_detected]' />
+          <map key='[sum_qty_pieces_wished]' value='[shoplist_agregado].[sum_qty_pieces_wished]' />
+          <map key='[supermercado (Consulta SQL personalizada)]' value='[Carrefour_prices].[supermercado]' />
+          <map key='[supermercado (Consulta SQL personalizada1)]' value='[Eroski_prices].[supermercado]' />
+          <map key='[supermercado]' value='[stores].[supermercado]' />
+          <map key='[tipo]' value='[stores].[tipo]' />
+        </cols>
+        <metadata-records>
+          <metadata-record class='column'>
+            <remote-name>id_detection</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[id_detection]</local-name>
+            <parent-name>[detection]</parent-name>
+            <remote-alias>id_detection</remote-alias>
+            <ordinal>1</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>2147483647</width>
+            <contains-null>false</contains-null>
+            <cast-to-local-type>true</cast-to-local-type>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[detection_D3199B23CB8B428C86342BD2CB18D225]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>product</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[product]</local-name>
+            <parent-name>[detection]</parent-name>
+            <remote-alias>product</remote-alias>
+            <ordinal>2</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>2147483647</width>
+            <contains-null>false</contains-null>
+            <cast-to-local-type>true</cast-to-local-type>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[detection_D3199B23CB8B428C86342BD2CB18D225]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>qty_detected</remote-name>
+            <remote-type>131</remote-type>
+            <local-name>[qty_detected]</local-name>
+            <parent-name>[detection]</parent-name>
+            <remote-alias>qty_detected</remote-alias>
+            <ordinal>3</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>17</precision>
+            <contains-null>false</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[detection_D3199B23CB8B428C86342BD2CB18D225]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>image_url</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[image_url]</local-name>
+            <parent-name>[detection]</parent-name>
+            <remote-alias>image_url</remote-alias>
+            <ordinal>4</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>2147483647</width>
+            <contains-null>false</contains-null>
+            <cast-to-local-type>true</cast-to-local-type>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[detection_D3199B23CB8B428C86342BD2CB18D225]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>date_created</remote-name>
+            <remote-type>7</remote-type>
+            <local-name>[date_created]</local-name>
+            <parent-name>[detection]</parent-name>
+            <remote-alias>date_created</remote-alias>
+            <ordinal>5</ordinal>
+            <local-type>date</local-type>
+            <aggregation>Year</aggregation>
+            <contains-null>false</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[detection_D3199B23CB8B428C86342BD2CB18D225]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>date_created</remote-name>
+            <remote-type>7</remote-type>
+            <local-name>[date_created (Consulta SQL personalizada2)]</local-name>
+            <parent-name>[shoplist_agregado]</parent-name>
+            <remote-alias>date_created</remote-alias>
+            <ordinal>7</ordinal>
+            <local-type>date</local-type>
+            <aggregation>Year</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[_0AE142DFA9DB4C75A2D4E1BCBF32C20F]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>product</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[product (Consulta SQL personalizada2)]</local-name>
+            <parent-name>[shoplist_agregado]</parent-name>
+            <remote-alias>product</remote-alias>
+            <ordinal>8</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>2147483647</width>
+            <contains-null>true</contains-null>
+            <cast-to-local-type>true</cast-to-local-type>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[_0AE142DFA9DB4C75A2D4E1BCBF32C20F]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>sum_qty_pieces_wished</remote-name>
+            <remote-type>131</remote-type>
+            <local-name>[sum_qty_pieces_wished]</local-name>
+            <parent-name>[shoplist_agregado]</parent-name>
+            <remote-alias>sum_qty_pieces_wished</remote-alias>
+            <ordinal>9</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <scale>0</scale>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[_0AE142DFA9DB4C75A2D4E1BCBF32C20F]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>date_created</remote-name>
+            <remote-type>7</remote-type>
+            <local-name>[date_created (Consulta SQL personalizada3)]</local-name>
+            <parent-name>[detection_agregado]</parent-name>
+            <remote-alias>date_created</remote-alias>
+            <ordinal>11</ordinal>
+            <local-type>date</local-type>
+            <aggregation>Year</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[_0AE142DFA9DB4C75A2D4E1BCBF32C20F]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>product</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[product (Consulta SQL personalizada3)]</local-name>
+            <parent-name>[detection_agregado]</parent-name>
+            <remote-alias>product</remote-alias>
+            <ordinal>12</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>2147483647</width>
+            <contains-null>true</contains-null>
+            <cast-to-local-type>true</cast-to-local-type>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[_0AE142DFA9DB4C75A2D4E1BCBF32C20F]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>sum_qty_detected</remote-name>
+            <remote-type>131</remote-type>
+            <local-name>[sum_qty_detected]</local-name>
+            <parent-name>[detection_agregado]</parent-name>
+            <remote-alias>sum_qty_detected</remote-alias>
+            <ordinal>13</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <scale>0</scale>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[_0AE142DFA9DB4C75A2D4E1BCBF32C20F]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>supermercado</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[supermercado (Consulta SQL personalizada1)]</local-name>
+            <parent-name>[Eroski_prices]</parent-name>
+            <remote-alias>supermercado</remote-alias>
+            <ordinal>15</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>2147483647</width>
+            <contains-null>true</contains-null>
+            <cast-to-local-type>true</cast-to-local-type>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[_8082A019232147CB90099AED10ED0AD7]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>fecha</remote-name>
+            <remote-type>7</remote-type>
+            <local-name>[fecha (Consulta SQL personalizada1)]</local-name>
+            <parent-name>[Eroski_prices]</parent-name>
+            <remote-alias>fecha</remote-alias>
+            <ordinal>16</ordinal>
+            <local-type>date</local-type>
+            <aggregation>Year</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[_8082A019232147CB90099AED10ED0AD7]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>category</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[category (Consulta SQL personalizada1)]</local-name>
+            <parent-name>[Eroski_prices]</parent-name>
+            <remote-alias>category</remote-alias>
+            <ordinal>17</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>2147483647</width>
+            <contains-null>true</contains-null>
+            <cast-to-local-type>true</cast-to-local-type>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[_8082A019232147CB90099AED10ED0AD7]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>min_precio_kg</remote-name>
+            <remote-type>131</remote-type>
+            <local-name>[min_precio_kg (Consulta SQL personalizada1)]</local-name>
+            <parent-name>[Eroski_prices]</parent-name>
+            <remote-alias>min_precio_kg</remote-alias>
+            <ordinal>18</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <scale>0</scale>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[_8082A019232147CB90099AED10ED0AD7]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>date_created</remote-name>
+            <remote-type>7</remote-type>
+            <local-name>[date_created (equivalencies3)]</local-name>
+            <parent-name>[equivalencies3]</parent-name>
+            <remote-alias>date_created</remote-alias>
+            <ordinal>20</ordinal>
+            <local-type>date</local-type>
+            <aggregation>Year</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[_8082A019232147CB90099AED10ED0AD7]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>product</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[product (equivalencies3)]</local-name>
+            <parent-name>[equivalencies3]</parent-name>
+            <remote-alias>product</remote-alias>
+            <ordinal>21</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>2147483647</width>
+            <contains-null>true</contains-null>
+            <cast-to-local-type>true</cast-to-local-type>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[_8082A019232147CB90099AED10ED0AD7]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>qty_kg</remote-name>
+            <remote-type>131</remote-type>
+            <local-name>[qty_kg (equivalencies3)]</local-name>
+            <parent-name>[equivalencies3]</parent-name>
+            <remote-alias>qty_kg</remote-alias>
+            <ordinal>22</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>17</precision>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[_8082A019232147CB90099AED10ED0AD7]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>qty_pieces</remote-name>
+            <remote-type>131</remote-type>
+            <local-name>[qty_pieces (equivalencies3)]</local-name>
+            <parent-name>[equivalencies3]</parent-name>
+            <remote-alias>qty_pieces</remote-alias>
+            <ordinal>23</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>17</precision>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[_8082A019232147CB90099AED10ED0AD7]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>supermercado</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[supermercado (Consulta SQL personalizada)]</local-name>
+            <parent-name>[Carrefour_prices]</parent-name>
+            <remote-alias>supermercado</remote-alias>
+            <ordinal>25</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>2147483647</width>
+            <contains-null>true</contains-null>
+            <cast-to-local-type>true</cast-to-local-type>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[_EC135BBDD8E841F6A26F7597949EAF61]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>fecha</remote-name>
+            <remote-type>7</remote-type>
+            <local-name>[fecha (Consulta SQL personalizada)]</local-name>
+            <parent-name>[Carrefour_prices]</parent-name>
+            <remote-alias>fecha</remote-alias>
+            <ordinal>26</ordinal>
+            <local-type>date</local-type>
+            <aggregation>Year</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[_EC135BBDD8E841F6A26F7597949EAF61]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>category</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[category (Consulta SQL personalizada)]</local-name>
+            <parent-name>[Carrefour_prices]</parent-name>
+            <remote-alias>category</remote-alias>
+            <ordinal>27</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>2147483647</width>
+            <contains-null>true</contains-null>
+            <cast-to-local-type>true</cast-to-local-type>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[_EC135BBDD8E841F6A26F7597949EAF61]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>min_precio_kg</remote-name>
+            <remote-type>131</remote-type>
+            <local-name>[min_precio_kg]</local-name>
+            <parent-name>[Carrefour_prices]</parent-name>
+            <remote-alias>min_precio_kg</remote-alias>
+            <ordinal>28</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <scale>0</scale>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[_EC135BBDD8E841F6A26F7597949EAF61]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>date_created</remote-name>
+            <remote-type>7</remote-type>
+            <local-name>[date_created (equivalencies2)]</local-name>
+            <parent-name>[equivalencies2]</parent-name>
+            <remote-alias>date_created</remote-alias>
+            <ordinal>30</ordinal>
+            <local-type>date</local-type>
+            <aggregation>Year</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[_EC135BBDD8E841F6A26F7597949EAF61]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>product</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[product (equivalencies2)]</local-name>
+            <parent-name>[equivalencies2]</parent-name>
+            <remote-alias>product</remote-alias>
+            <ordinal>31</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>2147483647</width>
+            <contains-null>true</contains-null>
+            <cast-to-local-type>true</cast-to-local-type>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[_EC135BBDD8E841F6A26F7597949EAF61]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>qty_kg</remote-name>
+            <remote-type>131</remote-type>
+            <local-name>[qty_kg (equivalencies2)]</local-name>
+            <parent-name>[equivalencies2]</parent-name>
+            <remote-alias>qty_kg</remote-alias>
+            <ordinal>32</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>17</precision>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[_EC135BBDD8E841F6A26F7597949EAF61]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>qty_pieces</remote-name>
+            <remote-type>131</remote-type>
+            <local-name>[qty_pieces (equivalencies2)]</local-name>
+            <parent-name>[equivalencies2]</parent-name>
+            <remote-alias>qty_pieces</remote-alias>
+            <ordinal>33</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>17</precision>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[_EC135BBDD8E841F6A26F7597949EAF61]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>date_created</remote-name>
+            <remote-type>7</remote-type>
+            <local-name>[date_created (equivalencies)]</local-name>
+            <parent-name>[equivalencies]</parent-name>
+            <remote-alias>date_created</remote-alias>
+            <ordinal>35</ordinal>
+            <local-type>date</local-type>
+            <aggregation>Year</aggregation>
+            <contains-null>false</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[equivalencies_50F759796B7747CBB9959BFD9448F089]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>product</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[product (equivalencies)]</local-name>
+            <parent-name>[equivalencies]</parent-name>
+            <remote-alias>product</remote-alias>
+            <ordinal>36</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>2147483647</width>
+            <contains-null>false</contains-null>
+            <cast-to-local-type>true</cast-to-local-type>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[equivalencies_50F759796B7747CBB9959BFD9448F089]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>qty_kg</remote-name>
+            <remote-type>131</remote-type>
+            <local-name>[qty_kg]</local-name>
+            <parent-name>[equivalencies]</parent-name>
+            <remote-alias>qty_kg</remote-alias>
+            <ordinal>37</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>17</precision>
+            <contains-null>false</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[equivalencies_50F759796B7747CBB9959BFD9448F089]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>qty_pieces</remote-name>
+            <remote-type>131</remote-type>
+            <local-name>[qty_pieces]</local-name>
+            <parent-name>[equivalencies]</parent-name>
+            <remote-alias>qty_pieces</remote-alias>
+            <ordinal>38</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>17</precision>
+            <contains-null>false</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[equivalencies_50F759796B7747CBB9959BFD9448F089]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>date_created</remote-name>
+            <remote-type>7</remote-type>
+            <local-name>[date_created (shoplist1)]</local-name>
+            <parent-name>[shoplist1]</parent-name>
+            <remote-alias>date_created</remote-alias>
+            <ordinal>40</ordinal>
+            <local-type>date</local-type>
+            <aggregation>Year</aggregation>
+            <contains-null>false</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[shoplist_EB6990CEAA5042D2A022B9F4BD473A96]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>product</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[product (shoplist1)]</local-name>
+            <parent-name>[shoplist1]</parent-name>
+            <remote-alias>product</remote-alias>
+            <ordinal>41</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>2147483647</width>
+            <contains-null>false</contains-null>
+            <cast-to-local-type>true</cast-to-local-type>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[shoplist_EB6990CEAA5042D2A022B9F4BD473A96]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>qty_pieces_wished</remote-name>
+            <remote-type>131</remote-type>
+            <local-name>[qty_pieces_wished (shoplist1)]</local-name>
+            <parent-name>[shoplist1]</parent-name>
+            <remote-alias>qty_pieces_wished</remote-alias>
+            <ordinal>42</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>17</precision>
+            <contains-null>false</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[shoplist_EB6990CEAA5042D2A022B9F4BD473A96]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>supermercado</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[supermercado]</local-name>
+            <parent-name>[stores]</parent-name>
+            <remote-alias>supermercado</remote-alias>
+            <ordinal>44</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>2147483647</width>
+            <contains-null>false</contains-null>
+            <cast-to-local-type>true</cast-to-local-type>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[stores_3F042917441F4B8E94470EF2BF125BF9]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>tipo</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[tipo]</local-name>
+            <parent-name>[stores]</parent-name>
+            <remote-alias>tipo</remote-alias>
+            <ordinal>45</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>2147483647</width>
+            <contains-null>false</contains-null>
+            <cast-to-local-type>true</cast-to-local-type>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[stores_3F042917441F4B8E94470EF2BF125BF9]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>fecha</remote-name>
+            <remote-type>7</remote-type>
+            <local-name>[fecha]</local-name>
+            <parent-name>[stores]</parent-name>
+            <remote-alias>fecha</remote-alias>
+            <ordinal>46</ordinal>
+            <local-type>date</local-type>
+            <aggregation>Year</aggregation>
+            <contains-null>false</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[stores_3F042917441F4B8E94470EF2BF125BF9]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>categoria</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[categoria]</local-name>
+            <parent-name>[stores]</parent-name>
+            <remote-alias>categoria</remote-alias>
+            <ordinal>47</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>2147483647</width>
+            <contains-null>false</contains-null>
+            <cast-to-local-type>true</cast-to-local-type>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[stores_3F042917441F4B8E94470EF2BF125BF9]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>category</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[category]</local-name>
+            <parent-name>[stores]</parent-name>
+            <remote-alias>category</remote-alias>
+            <ordinal>48</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>2147483647</width>
+            <contains-null>false</contains-null>
+            <cast-to-local-type>true</cast-to-local-type>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[stores_3F042917441F4B8E94470EF2BF125BF9]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>subcategoria</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[subcategoria]</local-name>
+            <parent-name>[stores]</parent-name>
+            <remote-alias>subcategoria</remote-alias>
+            <ordinal>49</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>2147483647</width>
+            <contains-null>false</contains-null>
+            <cast-to-local-type>true</cast-to-local-type>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[stores_3F042917441F4B8E94470EF2BF125BF9]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>precio</remote-name>
+            <remote-type>131</remote-type>
+            <local-name>[precio]</local-name>
+            <parent-name>[stores]</parent-name>
+            <remote-alias>precio</remote-alias>
+            <ordinal>50</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>17</precision>
+            <contains-null>false</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[stores_3F042917441F4B8E94470EF2BF125BF9]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>peso_gr</remote-name>
+            <remote-type>131</remote-type>
+            <local-name>[peso_gr]</local-name>
+            <parent-name>[stores]</parent-name>
+            <remote-alias>peso_gr</remote-alias>
+            <ordinal>51</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>17</precision>
+            <contains-null>false</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[stores_3F042917441F4B8E94470EF2BF125BF9]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>precio_kg</remote-name>
+            <remote-type>131</remote-type>
+            <local-name>[precio_kg]</local-name>
+            <parent-name>[stores]</parent-name>
+            <remote-alias>precio_kg</remote-alias>
+            <ordinal>52</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>17</precision>
+            <contains-null>false</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[stores_3F042917441F4B8E94470EF2BF125BF9]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+        </metadata-records>
+      </connection>
+      <aliases enabled='yes' />
+      <column datatype='string' name='[:Measure Names]' role='dimension' type='nominal'>
+        <aliases>
+          <alias key='&quot;[federated.1ydt45j0lul06k1fg2c3h1dgnwij].[sum:Calculation_1376131181391560704:qk]&quot;' value='To buy' />
+          <alias key='&quot;[federated.1ydt45j0lul06k1fg2c3h1dgnwij].[sum:Calculation_1376131182430748678:qk]&quot;' value='Detected' />
+        </aliases>
+      </column>
+      <column caption='PrecioxKilo' datatype='real' name='[Calculation_1092122929197285377]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='([precio]*1000)/[peso_gr]' />
+      </column>
+      <column caption='Cantidad_Comprar' datatype='real' name='[Calculation_1376131181391560704]' role='measure' type='ordinal'>
+        <calculation class='tableau' formula='IF [sum_qty_pieces_wished]-[qty_detected] &lt;= 0&#13;&#10;THEN 0&#13;&#10;ELSE [sum_qty_pieces_wished]-[qty_detected]&#13;&#10;END' />
+      </column>
+      <column caption='sum_qty_detected_nonulos' datatype='real' name='[Calculation_1376131182430748678]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='IFNULL([sum_qty_detected],0)' />
+      </column>
+      <column caption='qty_to_buy' datatype='real' name='[Calculation_275001074298822656]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='IF ([sum_qty_pieces_wished]-[Calculation_1376131182430748678]) &lt;=0 &#13;&#10;THEN 0 &#13;&#10;ELSE [sum_qty_pieces_wished]-[Calculation_1376131182430748678] &#13;&#10;END' />
+      </column>
+      <column caption='PricexPiece_C' datatype='real' name='[Calculation_275001074608181254]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='[min_precio_kg]/[qty_pieces (equivalencies2)]' />
+      </column>
+      <column caption='PricexPiece_E' datatype='real' name='[Calculation_275001074609086472]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='[min_precio_kg (Consulta SQL personalizada1)]/[qty_pieces (equivalencies3)]' />
+      </column>
+      <_.fcp.ObjectModelTableType.true...column caption='shoplist_sum' datatype='table' name='[__tableau_internal_object_id__].[_0AE142DFA9DB4C75A2D4E1BCBF32C20F]' role='measure' type='quantitative' />
+      <_.fcp.ObjectModelTableType.true...column caption='stores_Eroski' datatype='table' name='[__tableau_internal_object_id__].[_8082A019232147CB90099AED10ED0AD7]' role='measure' type='quantitative' />
+      <_.fcp.ObjectModelTableType.true...column caption='stores_Carrefour' datatype='table' name='[__tableau_internal_object_id__].[_EC135BBDD8E841F6A26F7597949EAF61]' role='measure' type='quantitative' />
+      <_.fcp.ObjectModelTableType.true...column caption='detection' datatype='table' name='[__tableau_internal_object_id__].[detection_D3199B23CB8B428C86342BD2CB18D225]' role='measure' type='quantitative' />
+      <_.fcp.ObjectModelTableType.true...column caption='equivalencies' datatype='table' name='[__tableau_internal_object_id__].[equivalencies_50F759796B7747CBB9959BFD9448F089]' role='measure' type='quantitative' />
+      <_.fcp.ObjectModelTableType.true...column caption='shoplist1' datatype='table' name='[__tableau_internal_object_id__].[shoplist_EB6990CEAA5042D2A022B9F4BD473A96]' role='measure' type='quantitative' />
+      <_.fcp.ObjectModelTableType.true...column caption='stores' datatype='table' name='[__tableau_internal_object_id__].[stores_3F042917441F4B8E94470EF2BF125BF9]' role='measure' type='quantitative' />
+      <column caption='Categoria' datatype='string' name='[categoria]' role='dimension' type='nominal' />
+      <column datatype='date' name='[date_created (Consulta SQL personalizada2)]' role='dimension' type='ordinal' />
+      <column datatype='date' name='[date_created (Consulta SQL personalizada3)]' role='dimension' type='ordinal' />
+      <column caption='Date Created (Equivalencies)' datatype='date' name='[date_created (equivalencies)]' role='dimension' type='ordinal' />
+      <column caption='Date Created (Equivalencies2)' datatype='date' name='[date_created (equivalencies2)]' role='dimension' type='ordinal' />
+      <column caption='Date Created (Equivalencies3)' datatype='date' name='[date_created (equivalencies3)]' role='dimension' type='ordinal' />
+      <column caption='Date Created (Shoplist1)' datatype='date' name='[date_created (shoplist1)]' role='dimension' type='ordinal' />
+      <column caption='Date Created' datatype='date' name='[date_created]' role='dimension' type='ordinal' />
+      <column caption='Fecha' datatype='date' name='[fecha]' role='dimension' type='ordinal' />
+      <column caption='Id Detection' datatype='string' name='[id_detection]' role='dimension' type='nominal' />
+      <column caption='Image Url' datatype='string' name='[image_url]' role='dimension' type='nominal' />
+      <column caption='Peso Gr' datatype='real' name='[peso_gr]' role='measure' type='quantitative' />
+      <column caption='Precio' datatype='real' name='[precio]' role='measure' type='quantitative' />
+      <column datatype='string' name='[product (Consulta SQL personalizada2)]' role='dimension' type='nominal' />
+      <column caption='Product (Equivalencies)' datatype='string' name='[product (equivalencies)]' role='dimension' type='nominal' />
+      <column caption='Product (Equivalencies2)' datatype='string' name='[product (equivalencies2)]' role='dimension' type='nominal' />
+      <column caption='Product (Equivalencies3)' datatype='string' name='[product (equivalencies3)]' role='dimension' type='nominal' />
+      <column caption='Product (Shoplist1)' datatype='string' name='[product (shoplist1)]' role='dimension' type='nominal' />
+      <column caption='Product' datatype='string' name='[product]' role='dimension' type='nominal' />
+      <column caption='Qty Detected' datatype='real' name='[qty_detected]' role='measure' type='quantitative' />
+      <column caption='Qty Kg (Equivalencies2)' datatype='real' name='[qty_kg (equivalencies2)]' role='measure' type='quantitative' />
+      <column caption='Qty Kg (Equivalencies3)' datatype='real' name='[qty_kg (equivalencies3)]' role='measure' type='quantitative' />
+      <column caption='Qty Kg' datatype='real' name='[qty_kg]' role='measure' type='quantitative' />
+      <column caption='Qty Pieces (Equivalencies2)' datatype='real' name='[qty_pieces (equivalencies2)]' role='measure' type='quantitative' />
+      <column caption='Qty Pieces (Equivalencies3)' datatype='real' name='[qty_pieces (equivalencies3)]' role='measure' type='quantitative' />
+      <column caption='Qty Pieces' datatype='real' name='[qty_pieces]' role='measure' type='quantitative' />
+      <column caption='Qty Pieces Wished (Shoplist1)' datatype='real' name='[qty_pieces_wished (shoplist1)]' role='measure' type='quantitative' />
+      <column caption='Subcategoria' datatype='string' name='[subcategoria]' role='dimension' type='nominal' />
+      <column datatype='real' name='[sum_qty_pieces_wished]' role='measure' type='quantitative' />
+      <column caption='Supermercado' datatype='string' name='[supermercado]' role='dimension' type='nominal' />
+      <column-instance column='[qty_detected]' derivation='None' name='[none:qty_detected:ok]' pivot='key' type='ordinal' />
+      <column-instance column='[Calculation_1376131181391560704]' derivation='Sum' name='[sum:Calculation_1376131181391560704:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[Calculation_1376131182430748678]' derivation='Sum' name='[sum:Calculation_1376131182430748678:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[sum_qty_pieces_wished]' derivation='Sum' name='[sum:sum_qty_pieces_wished:qk]' pivot='key' type='quantitative' />
+      <group caption='Acción (Date Created (Shoplist))' hidden='true' name='[Action (Date Created (Shoplist))]' name-style='unqualified' user:auto-column='sheet_link'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[date_created (shoplist)]' />
+        </groupfilter>
+      </group>
+      <group caption='Acción (Date Created)' hidden='true' name='[Action (Date Created)]' name-style='unqualified' user:auto-column='sheet_link'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[date_created]' />
+        </groupfilter>
+      </group>
+      <group caption='Acción (Fecha)' hidden='true' name='[Action (Fecha)]' name-style='unqualified' user:auto-column='sheet_link'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[fecha]' />
+        </groupfilter>
+      </group>
+      <group caption='Acción (Id Detection,Image Url,Product)' hidden='true' name='[Action (Id Detection,Image Url,Product)]' name-style='unqualified' user:auto-column='sheet_link'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[id_detection]' />
+          <groupfilter function='level-members' level='[image_url]' />
+          <groupfilter function='level-members' level='[product]' />
+        </groupfilter>
+      </group>
+      <group caption='Acción (Image Url)' hidden='true' name='[Action (Image Url)]' name-style='unqualified' user:auto-column='sheet_link'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[image_url]' />
+        </groupfilter>
+      </group>
+      <group caption='Acción (Image Url,Product (Shoplist2))' hidden='true' name='[Action (Image Url,Product (Shoplist2))]' name-style='unqualified' user:auto-column='sheet_link'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[image_url]' />
+          <groupfilter function='level-members' level='[product (shoplist2)]' />
+        </groupfilter>
+      </group>
+      <group caption='Acción (Image Url,Product)' hidden='true' name='[Action (Image Url,Product)]' name-style='unqualified' user:auto-column='sheet_link'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[image_url]' />
+          <groupfilter function='level-members' level='[product]' />
+        </groupfilter>
+      </group>
+      <group caption='Acción (date_created (Consulta SQL personalizada2))' hidden='true' name='[Action (date_created (Consulta SQL personalizada2))]' name-style='unqualified' user:auto-column='sheet_link'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[date_created (Consulta SQL personalizada2)]' />
+        </groupfilter>
+      </group>
+      <group caption='Acción (date_created (Consulta SQL personalizada3))' hidden='true' name='[Action (date_created (Consulta SQL personalizada3))]' name-style='unqualified' user:auto-column='sheet_link'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[date_created (Consulta SQL personalizada3)]' />
+        </groupfilter>
+      </group>
+      <group caption='Acción (product (Consulta SQL personalizada2),Qty Detected)' hidden='true' name='[Action (product (Consulta SQL personalizada2),Qty Detected)]' name-style='unqualified' user:auto-column='sheet_link'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[product (Consulta SQL personalizada2)]' />
+          <groupfilter function='level-members' level='[none:qty_detected:ok]' />
+        </groupfilter>
+      </group>
+      <layout _.fcp.SchemaViewerObjectModel.false...dim-percentage='0.5' _.fcp.SchemaViewerObjectModel.false...measure-percentage='0.4' dim-ordering='alphabetic' measure-ordering='alphabetic' show-structure='true' />
+      <style>
+        <style-rule element='mark'>
+          <encoding attr='color' field='[Action (Image Url)]' type='palette'>
+            <map to='#4e79a7'>
+              <bucket>(&quot;https://storage.googleapis.com/kcp-bucket-01/datos_images_out/detection_4.png&quot;)</bucket>
+            </map>
+            <map to='#59a14f'>
+              <bucket>(&quot;https://storage.googleapis.com/kcp-bucket-01/datos_images_out/detection_6.png&quot;)</bucket>
+            </map>
+            <map to='#76b7b2'>
+              <bucket>(&quot;https://storage.googleapis.com/kcp-bucket-01/datos_images_out/detection_5.png&quot;)</bucket>
+            </map>
+            <map to='#e15759'>
+              <bucket>(&quot;https://storage.googleapis.com/kcp-bucket-01/datos_images_out/detection_1.png&quot;)</bucket>
+            </map>
+            <map to='#f28e2b'>
+              <bucket>(&quot;https://storage.googleapis.com/kcp-bucket-01/datos_images_out/detection_3.png&quot;)</bucket>
+            </map>
+          </encoding>
+          <encoding attr='color' field='[:Measure Names]' type='palette'>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.1ydt45j0lul06k1fg2c3h1dgnwij]&quot;</bucket>
+            </map>
+            <map to='#76b7b2'>
+              <bucket>&quot;[federated.1ydt45j0lul06k1fg2c3h1dgnwij].[sum:Calculation_1376131181391560704:qk]&quot;</bucket>
+            </map>
+            <map to='#e15759'>
+              <bucket>&quot;[federated.1ydt45j0lul06k1fg2c3h1dgnwij].[sum:Calculation_275001074610864138:qk]&quot;</bucket>
+            </map>
+            <map to='#e15759'>
+              <bucket>&quot;[federated.1ydt45j0lul06k1fg2c3h1dgnwij].[sum:sum_qty_pieces_wished:qk]&quot;</bucket>
+            </map>
+            <map to='#f28e2b'>
+              <bucket>&quot;[federated.1ydt45j0lul06k1fg2c3h1dgnwij].[sum:Calculation_1376131182430748678:qk]&quot;</bucket>
+            </map>
+          </encoding>
+        </style-rule>
+      </style>
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;España&quot;' />
+      </semantic-values>
+      <date-options start-of-week='monday' />
+      <field-sort-info field-sort-order-type='custom-order'>
+        <field-sort-custom-order field='date_created (Consulta SQL personalizada2)' />
+        <field-sort-custom-order field='product (Consulta SQL personalizada2)' />
+        <field-sort-custom-order field='sum_qty_pieces_wished' />
+        <field-sort-custom-order field='date_created (Consulta SQL personalizada3)' />
+        <field-sort-custom-order field='product (Consulta SQL personalizada3)' />
+        <field-sort-custom-order field='sum_qty_detected' />
+        <field-sort-custom-order field='Calculation_1376131182430748678' />
+        <field-sort-custom-order field='Calculation_275001074298822656' />
+      </field-sort-info>
+      <_.fcp.ObjectModelEncapsulateLegacy.true...object-graph>
+        <objects>
+          <object caption='shoplist_sum' id='_0AE142DFA9DB4C75A2D4E1BCBF32C20F'>
+            <properties context=''>
+              <relation join='left' type='join'>
+                <clause type='join'>
+                  <expression op='AND'>
+                    <expression op='='>
+                      <expression op='[shoplist_agregado].[date_created]' />
+                      <expression op='[detection_agregado].[date_created]' />
+                    </expression>
+                    <expression op='='>
+                      <expression op='[shoplist_agregado].[product]' />
+                      <expression op='[detection_agregado].[product]' />
+                    </expression>
+                  </expression>
+                </clause>
+                <relation connection='postgres.02sfjif0rqq7bq14aycsm0fipthm' name='shoplist_agregado' type='text'>SELECT date_created, product, SUM(qty_pieces_wished) sum_qty_pieces_wished&#13;
+FROM shoplist&#13;
+GROUP BY date_created, product</relation>
+                <relation connection='postgres.02sfjif0rqq7bq14aycsm0fipthm' name='detection_agregado' type='text'>SELECT Date_Created, Product, SUM(Qty_Detected) sum_qty_detected&#13;
+FROM detection&#13;
+GROUP BY Date_Created, Product</relation>
+              </relation>
+            </properties>
+          </object>
+          <object caption='stores_Eroski' id='_8082A019232147CB90099AED10ED0AD7'>
+            <properties context=''>
+              <relation join='left' type='join'>
+                <clause type='join'>
+                  <expression op='='>
+                    <expression op='[Eroski_prices].[category]' />
+                    <expression op='[equivalencies3].[product]' />
+                  </expression>
+                </clause>
+                <relation connection='postgres.02sfjif0rqq7bq14aycsm0fipthm' name='Eroski_prices' type='text'>SELECT supermercado, fecha, category, MIN(precio_kg) min_precio_kg&#13;
+FROM stores&#13;
+WHERE supermercado = &apos;Eroski&apos;&#13;
+GROUP BY supermercado, fecha, category&#13;
+ORDER BY fecha</relation>
+                <relation connection='postgres.02sfjif0rqq7bq14aycsm0fipthm' name='equivalencies3' table='[public].[equivalencies]' type='table' />
+              </relation>
+            </properties>
+          </object>
+          <object caption='stores_Carrefour' id='_EC135BBDD8E841F6A26F7597949EAF61'>
+            <properties context=''>
+              <relation join='left' type='join'>
+                <clause type='join'>
+                  <expression op='='>
+                    <expression op='[Carrefour_prices].[category]' />
+                    <expression op='[equivalencies2].[product]' />
+                  </expression>
+                </clause>
+                <relation connection='postgres.02sfjif0rqq7bq14aycsm0fipthm' name='Carrefour_prices' type='text'>SELECT supermercado, fecha, category, MIN(precio_kg) min_precio_kg&#13;
+FROM stores&#13;
+WHERE supermercado = &apos;Carrefour&apos;&#13;
+GROUP BY supermercado, fecha, category&#13;
+ORDER BY fecha</relation>
+                <relation connection='postgres.02sfjif0rqq7bq14aycsm0fipthm' name='equivalencies2' table='[public].[equivalencies]' type='table' />
+              </relation>
+            </properties>
+          </object>
+          <object caption='detection' id='detection_D3199B23CB8B428C86342BD2CB18D225'>
+            <properties context=''>
+              <relation connection='postgres.02sfjif0rqq7bq14aycsm0fipthm' name='detection' table='[public].[detection]' type='table' />
+            </properties>
+          </object>
+          <object caption='equivalencies' id='equivalencies_50F759796B7747CBB9959BFD9448F089'>
+            <properties context=''>
+              <relation connection='postgres.02sfjif0rqq7bq14aycsm0fipthm' name='equivalencies' table='[public].[equivalencies]' type='table' />
+            </properties>
+          </object>
+          <object caption='shoplist1' id='shoplist_EB6990CEAA5042D2A022B9F4BD473A96'>
+            <properties context=''>
+              <relation connection='postgres.02sfjif0rqq7bq14aycsm0fipthm' name='shoplist1' table='[public].[shoplist]' type='table' />
+            </properties>
+          </object>
+          <object caption='stores' id='stores_3F042917441F4B8E94470EF2BF125BF9'>
+            <properties context=''>
+              <relation connection='postgres.02sfjif0rqq7bq14aycsm0fipthm' name='stores' table='[public].[stores]' type='table' />
+            </properties>
+          </object>
+        </objects>
+        <relationships>
+          <relationship>
+            <expression op='AND'>
+              <expression op='='>
+                <expression op='[date_created]' />
+                <expression op='[date_created (Consulta SQL personalizada2)]' />
+              </expression>
+              <expression op='='>
+                <expression op='[product]' />
+                <expression op='[product (Consulta SQL personalizada2)]' />
+              </expression>
+            </expression>
+            <first-end-point object-id='detection_D3199B23CB8B428C86342BD2CB18D225' />
+            <second-end-point object-id='_0AE142DFA9DB4C75A2D4E1BCBF32C20F' />
+          </relationship>
+          <relationship>
+            <expression op='AND'>
+              <expression op='='>
+                <expression op='[date_created]' />
+                <expression op='[fecha (Consulta SQL personalizada1)]' />
+              </expression>
+              <expression op='='>
+                <expression op='[product]' />
+                <expression op='[category (Consulta SQL personalizada1)]' />
+              </expression>
+            </expression>
+            <first-end-point object-id='detection_D3199B23CB8B428C86342BD2CB18D225' />
+            <second-end-point object-id='_8082A019232147CB90099AED10ED0AD7' />
+          </relationship>
+          <relationship>
+            <expression op='AND'>
+              <expression op='='>
+                <expression op='[date_created]' />
+                <expression op='[fecha (Consulta SQL personalizada)]' />
+              </expression>
+              <expression op='='>
+                <expression op='[product]' />
+                <expression op='[category (Consulta SQL personalizada)]' />
+              </expression>
+            </expression>
+            <first-end-point object-id='detection_D3199B23CB8B428C86342BD2CB18D225' />
+            <second-end-point object-id='_EC135BBDD8E841F6A26F7597949EAF61' />
+          </relationship>
+          <relationship>
+            <expression op='='>
+              <expression op='[product]' />
+              <expression op='[product (equivalencies)]' />
+            </expression>
+            <first-end-point object-id='detection_D3199B23CB8B428C86342BD2CB18D225' />
+            <second-end-point object-id='equivalencies_50F759796B7747CBB9959BFD9448F089' />
+          </relationship>
+          <relationship>
+            <expression op='AND'>
+              <expression op='='>
+                <expression op='[date_created]' />
+                <expression op='[date_created (shoplist1)]' />
+              </expression>
+              <expression op='='>
+                <expression op='[product]' />
+                <expression op='[product (shoplist1)]' />
+              </expression>
+            </expression>
+            <first-end-point object-id='detection_D3199B23CB8B428C86342BD2CB18D225' />
+            <second-end-point object-id='shoplist_EB6990CEAA5042D2A022B9F4BD473A96' />
+          </relationship>
+          <relationship>
+            <expression op='='>
+              <expression op='[product]' />
+              <expression op='[categoria]' />
+            </expression>
+            <first-end-point object-id='detection_D3199B23CB8B428C86342BD2CB18D225' />
+            <second-end-point object-id='stores_3F042917441F4B8E94470EF2BF125BF9' />
+          </relationship>
+        </relationships>
+      </_.fcp.ObjectModelEncapsulateLegacy.true...object-graph>
+    </datasource>
+  </datasources>
+  <actions>
+    <action caption='Hipervínculo2' name='[Action3_C1BF8224F8374BC28CD5F8C8E1D19A08]'>
+      <activation type='on-select' />
+      <source dashboard='Dashboard' type='sheet' />
+      <link caption='' expression='&lt;[image_url]&gt;'>
+        <url-action-type>specific-zone</url-action-type>
+        <url-action-target>21</url-action-target>
+      </link>
+    </action>
+    <action caption='Filtro 2 (generado)' name='[Action4_20039BAB845E4B4885BFF84F8C547F52]'>
+      <activation auto-clear='true' type='on-select' />
+      <source dashboard='Dashboard' type='sheet' worksheet='Detection' />
+      <command command='tsc:tsl-filter'>
+        <param name='special-fields' value='all' />
+        <param name='target' value='Dashboard' />
+      </command>
+    </action>
+    <datasources>
+      <datasource caption='detection+ (proyecto)' name='federated.1ydt45j0lul06k1fg2c3h1dgnwij' />
+    </datasources>
+    <datasource-dependencies datasource='federated.1ydt45j0lul06k1fg2c3h1dgnwij'>
+      <column caption='Image Url' datatype='string' name='[image_url]' role='dimension' type='nominal' />
+    </datasource-dependencies>
+  </actions>
+  <worksheets>
+    <worksheet name='Detection'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run fontcolor='#555555' fontname='Showcard Gothic' fontsize='12'>Food detected</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='detection+ (proyecto)' name='federated.1ydt45j0lul06k1fg2c3h1dgnwij' />
+          </datasources>
+          <datasource-dependencies datasource='federated.1ydt45j0lul06k1fg2c3h1dgnwij'>
+            <column-instance column='[date_created]' derivation='Attribute' name='[attr:date_created:ok]' pivot='key' type='ordinal' />
+            <column caption='Date Created' datatype='date' name='[date_created]' role='dimension' type='ordinal' />
+            <column caption='Image Url' datatype='string' name='[image_url]' role='dimension' type='nominal' />
+            <column-instance column='[image_url]' derivation='None' name='[none:image_url:nk]' pivot='key' type='nominal' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.1ydt45j0lul06k1fg2c3h1dgnwij].[attr:date_created:ok]'>
+            <groupfilter function='union' user:ui-domain='relevant' user:ui-enumeration='inclusive' user:ui-marker='enumerate'>
+              <groupfilter function='member' level='[attr:date_created:ok]' member='#2022-03-22#' />
+              <groupfilter function='member' level='[attr:date_created:ok]' member='#2022-03-24#' />
+              <groupfilter function='member' level='[attr:date_created:ok]' member='#2022-03-28#' />
+              <groupfilter function='member' level='[attr:date_created:ok]' member='#2022-03-29#' />
+              <groupfilter function='member' level='[attr:date_created:ok]' member='#2022-03-30#' />
+              <groupfilter function='member' level='[attr:date_created:ok]' member='#2022-04-04#' />
+              <groupfilter function='member' level='[attr:date_created:ok]' member='#2022-04-07#' />
+            </groupfilter>
+          </filter>
+          <slices>
+            <column>[federated.1ydt45j0lul06k1fg2c3h1dgnwij].[attr:date_created:ok]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='cell'>
+            <format attr='height' field='[federated.1ydt45j0lul06k1fg2c3h1dgnwij].[none:image_url:nk]' value='41' />
+            <format attr='color' field='[federated.1ydt45j0lul06k1fg2c3h1dgnwij].[attr:date_created:ok]' value='#555555' />
+          </style-rule>
+          <style-rule element='header'>
+            <format attr='font-weight' data-class='total' field='[federated.1ydt45j0lul06k1fg2c3h1dgnwij].[attr:date_created:ok]' value='normal' />
+            <format attr='text-align' data-class='subtotal' field='[federated.1ydt45j0lul06k1fg2c3h1dgnwij].[attr:date_created:ok]' value='center' />
+            <format attr='background-color' value='#00000000' />
+            <format attr='band-color' scope='rows' value='#00000000' />
+            <format attr='band-color' scope='cols' value='#00000000' />
+            <format attr='color' data-class='total' field='[federated.1ydt45j0lul06k1fg2c3h1dgnwij].[attr:date_created:ok]' value='#555555' />
+            <format attr='color' data-class='subtotal' field='[federated.1ydt45j0lul06k1fg2c3h1dgnwij].[attr:date_created:ok]' value='#555555' />
+            <format attr='background-color' field='[federated.1ydt45j0lul06k1fg2c3h1dgnwij].[attr:date_created:ok]' value='#ffffff' />
+          </style-rule>
+          <style-rule element='label'>
+            <format attr='display' field='[federated.1ydt45j0lul06k1fg2c3h1dgnwij].[none:image_url:nk]' value='false' />
+            <format attr='display' field='[federated.1ydt45j0lul06k1fg2c3h1dgnwij].[attr:date_created:ok]' value='true' />
+            <format attr='text-align' field='[federated.1ydt45j0lul06k1fg2c3h1dgnwij].[attr:date_created:ok]' value='center' />
+            <format attr='color' field='[federated.1ydt45j0lul06k1fg2c3h1dgnwij].[attr:date_created:ok]' value='#555555' />
+          </style-rule>
+          <style-rule element='pane'>
+            <format attr='background-color' value='#00000000' />
+            <format attr='band-color' scope='rows' value='#00000000' />
+            <format attr='band-color' scope='cols' value='#00000000' />
+          </style-rule>
+          <style-rule element='table'>
+            <format attr='band-level' scope='rows' value='6' />
+            <format attr='background-color' value='#00000000' />
+            <format attr='band-size' scope='rows' value='1' />
+            <format attr='band-size' scope='cols' value='1' />
+          </style-rule>
+          <style-rule element='worksheet'>
+            <format attr='display-field-labels' scope='rows' value='false' />
+            <format attr='in-tooltip' field='[federated.1ydt45j0lul06k1fg2c3h1dgnwij].[attr:date_created:ok]' value='false' />
+          </style-rule>
+          <style-rule element='caption'>
+            <format attr='border-color' value='#555555' />
+            <format attr='background-color' value='#00000000' />
+            <format attr='border-width' value='0' />
+            <format attr='border-style' value='none' />
+          </style-rule>
+          <style-rule element='table-div'>
+            <format attr='stroke-size' scope='cols' value='0' />
+            <format attr='line-visibility' scope='cols' value='off' />
+          </style-rule>
+          <style-rule element='title'>
+            <format attr='border-color' value='#555555' />
+            <format attr='background-color' value='#00000000' />
+            <format attr='border-width' value='0' />
+            <format attr='border-style' value='none' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane id='1' selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Polygon' />
+            <style>
+              <style-rule element='pane'>
+                <format attr='minheight' value='-1' />
+                <format attr='maxheight' value='-1' />
+                <format attr='minheight' value='-1' />
+                <format attr='maxheight' value='-1' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>([federated.1ydt45j0lul06k1fg2c3h1dgnwij].[attr:date_created:ok] / [federated.1ydt45j0lul06k1fg2c3h1dgnwij].[none:image_url:nk])</rows>
+        <cols />
+      </table>
+      <simple-id uuid='{C4C5C135-1F76-4054-A7E9-5196BE5ED957}' />
+    </worksheet>
+    <worksheet name='Price_E&amp;C'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run fontcolor='#555555' fontname='Showcard Gothic' fontsize='12'>Food prices</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='detection+ (proyecto)' name='federated.1ydt45j0lul06k1fg2c3h1dgnwij' />
+          </datasources>
+          <datasource-dependencies datasource='federated.1ydt45j0lul06k1fg2c3h1dgnwij'>
+            <column caption='Cantidad_Comprar' datatype='real' name='[Calculation_1376131181391560704]' role='measure' type='ordinal'>
+              <calculation class='tableau' formula='IF [sum_qty_pieces_wished]-[qty_detected] &lt;= 0&#13;&#10;THEN 0&#13;&#10;ELSE [sum_qty_pieces_wished]-[qty_detected]&#13;&#10;END' />
+            </column>
+            <column caption='PricexPiece_C' datatype='real' name='[Calculation_275001074608181254]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='[min_precio_kg]/[qty_pieces (equivalencies2)]' />
+            </column>
+            <column caption='PricexPiece_E' datatype='real' name='[Calculation_275001074609086472]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='[min_precio_kg (Consulta SQL personalizada1)]/[qty_pieces (equivalencies3)]' />
+            </column>
+            <column caption='[PricexPiece_E]*[Cantidad_Comprar]' datatype='real' name='[Calculation_275001074610864138]' role='measure' type='quantitative' user:unnamed='Precio_Eroski'>
+              <calculation class='tableau' formula='[Calculation_275001074609086472]*[Calculation_1376131181391560704]' />
+            </column>
+            <column caption='[PricexPiece_E]*[Cantidad_Comprar]' datatype='real' name='[Calculation_275001074611777547]' role='measure' type='quantitative' user:unnamed='Precio_Eroski'>
+              <calculation class='tableau' formula='[Calculation_275001074609086472]*[Calculation_1376131181391560704]' />
+            </column>
+            <column caption='[PricexPiece_C]*[Cantidad_Comprar]' datatype='real' name='[Calculation_275001074877280269]' role='measure' type='quantitative' user:unnamed='Precio_EyC'>
+              <calculation class='tableau' formula='[Calculation_275001074608181254]*[Calculation_1376131181391560704]' />
+            </column>
+            <column caption='[PricexPiece_C]*[Cantidad_Comprar]' datatype='real' name='[Calculation_275001074877464591]' role='measure' type='quantitative' user:unnamed='Precio_EyC'>
+              <calculation class='tableau' formula='[Calculation_275001074608181254]*[Calculation_1376131181391560704]' />
+            </column>
+            <column datatype='string' name='[category (Consulta SQL personalizada1)]' role='dimension' type='nominal' />
+            <column caption='Image Url' datatype='string' name='[image_url]' role='dimension' type='nominal' />
+            <column datatype='real' name='[min_precio_kg (Consulta SQL personalizada1)]' role='measure' type='quantitative' />
+            <column datatype='real' name='[min_precio_kg]' role='measure' type='quantitative' />
+            <column-instance column='[category (Consulta SQL personalizada1)]' derivation='None' name='[none:category (Consulta SQL personalizada1):nk]' pivot='key' type='nominal' />
+            <column caption='Qty Detected' datatype='real' name='[qty_detected]' role='measure' type='quantitative' />
+            <column caption='Qty Pieces (Equivalencies2)' datatype='real' name='[qty_pieces (equivalencies2)]' role='measure' type='quantitative' />
+            <column caption='Qty Pieces (Equivalencies3)' datatype='real' name='[qty_pieces (equivalencies3)]' role='measure' type='quantitative' />
+            <column-instance column='[Calculation_275001074610864138]' derivation='Sum' name='[sum:Calculation_275001074610864138:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Calculation_275001074611777547]' derivation='Sum' name='[sum:Calculation_275001074611777547:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Calculation_275001074877280269]' derivation='Sum' name='[sum:Calculation_275001074877280269:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Calculation_275001074877464591]' derivation='Sum' name='[sum:Calculation_275001074877464591:qk]' pivot='key' type='quantitative' />
+            <column datatype='real' name='[sum_qty_pieces_wished]' role='measure' type='quantitative' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.1ydt45j0lul06k1fg2c3h1dgnwij].[Action (Image Url)]'>
+            <groupfilter function='member' level='[image_url]' member='&quot;https://storage.googleapis.com/kcp-bucket-01/datos_images_out/detection_31.jpg&quot;' user:ui-action-filter='[Action3_41765AECE8C843209D1570654E0EDF4E]' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+          </filter>
+          <slices>
+            <column>[federated.1ydt45j0lul06k1fg2c3h1dgnwij].[Action (Image Url)]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <format attr='title' class='0' field='[federated.1ydt45j0lul06k1fg2c3h1dgnwij].[sum:Calculation_275001074610864138:qk]' scope='cols' value='Purchase Price at Eroski' />
+            <format attr='title' class='0' field='[federated.1ydt45j0lul06k1fg2c3h1dgnwij].[sum:Calculation_275001074877280269:qk]' scope='cols' value='Purchase Price at Carrefour' />
+          </style-rule>
+          <style-rule element='cell'>
+            <format attr='text-format' field='[federated.1ydt45j0lul06k1fg2c3h1dgnwij].[sum:Calculation_275001074877464591:qk]' value='C3082%' />
+            <format attr='text-format' field='[federated.1ydt45j0lul06k1fg2c3h1dgnwij].[sum:Calculation_275001074611777547:qk]' value='C3082%' />
+          </style-rule>
+          <style-rule element='worksheet'>
+            <format attr='display-field-labels' scope='rows' value='false' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='mark-labels-show' value='true' />
+              </style-rule>
+            </style>
+          </pane>
+          <pane id='1' selection-relaxation-option='selection-relaxation-allow' x-axis-name='[federated.1ydt45j0lul06k1fg2c3h1dgnwij].[sum:Calculation_275001074610864138:qk]'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <color column='[federated.1ydt45j0lul06k1fg2c3h1dgnwij].[:Measure Names]' />
+              <text column='[federated.1ydt45j0lul06k1fg2c3h1dgnwij].[sum:Calculation_275001074611777547:qk]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='mark-labels-show' value='true' />
+              </style-rule>
+            </style>
+          </pane>
+          <pane id='2' selection-relaxation-option='selection-relaxation-allow' x-axis-name='[federated.1ydt45j0lul06k1fg2c3h1dgnwij].[sum:Calculation_275001074877280269:qk]'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <text column='[federated.1ydt45j0lul06k1fg2c3h1dgnwij].[sum:Calculation_275001074877464591:qk]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='mark-labels-show' value='true' />
+                <format attr='mark-color' value='#4e79a7' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[federated.1ydt45j0lul06k1fg2c3h1dgnwij].[none:category (Consulta SQL personalizada1):nk]</rows>
+        <cols>([federated.1ydt45j0lul06k1fg2c3h1dgnwij].[sum:Calculation_275001074610864138:qk] + [federated.1ydt45j0lul06k1fg2c3h1dgnwij].[sum:Calculation_275001074877280269:qk])</cols>
+      </table>
+      <simple-id uuid='{A0DEC81A-3642-4FF9-80D0-E56D310BEA95}' />
+    </worksheet>
+    <worksheet name='Price_Total_Carrefour'>
+      <layout-options>
+        <title>
+          <formatted-text />
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='detection+ (proyecto)' name='federated.1ydt45j0lul06k1fg2c3h1dgnwij' />
+          </datasources>
+          <datasource-dependencies datasource='federated.1ydt45j0lul06k1fg2c3h1dgnwij'>
+            <column caption='Cantidad_Comprar' datatype='real' name='[Calculation_1376131181391560704]' role='measure' type='ordinal'>
+              <calculation class='tableau' formula='IF [sum_qty_pieces_wished]-[qty_detected] &lt;= 0&#13;&#10;THEN 0&#13;&#10;ELSE [sum_qty_pieces_wished]-[qty_detected]&#13;&#10;END' />
+            </column>
+            <column caption='PricexPiece_C' datatype='real' name='[Calculation_275001074608181254]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='[min_precio_kg]/[qty_pieces (equivalencies2)]' />
+            </column>
+            <column caption='SUM([PricexPiece_C]*[Cantidad_Comprar])' datatype='real' name='[Calculation_275001074885734417]' role='measure' type='quantitative' user:unnamed='Precio_Total_Carrefour'>
+              <calculation class='tableau' formula='SUM([Calculation_275001074608181254]*[Calculation_1376131181391560704])' />
+            </column>
+            <column caption='Image Url' datatype='string' name='[image_url]' role='dimension' type='nominal' />
+            <column datatype='real' name='[min_precio_kg]' role='measure' type='quantitative' />
+            <column caption='Qty Detected' datatype='real' name='[qty_detected]' role='measure' type='quantitative' />
+            <column caption='Qty Pieces (Equivalencies2)' datatype='real' name='[qty_pieces (equivalencies2)]' role='measure' type='quantitative' />
+            <column datatype='real' name='[sum_qty_pieces_wished]' role='measure' type='quantitative' />
+            <column-instance column='[Calculation_275001074885734417]' derivation='User' name='[usr:Calculation_275001074885734417:ok]' pivot='key' type='ordinal' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.1ydt45j0lul06k1fg2c3h1dgnwij].[Action (Image Url)]'>
+            <groupfilter function='member' level='[image_url]' member='&quot;https://storage.googleapis.com/kcp-bucket-01/datos_images_out/detection_31.jpg&quot;' user:ui-action-filter='[Action3_41765AECE8C843209D1570654E0EDF4E]' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+          </filter>
+          <slices>
+            <column>[federated.1ydt45j0lul06k1fg2c3h1dgnwij].[Action (Image Url)]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='cell'>
+            <format attr='width' value='481' />
+            <format attr='height' value='35' />
+            <format attr='text-format' field='[federated.1ydt45j0lul06k1fg2c3h1dgnwij].[usr:Calculation_275001074885734417:ok]' value='C3082%' />
+            <format attr='text-align' value='left' />
+            <format attr='text-align' field='[federated.1ydt45j0lul06k1fg2c3h1dgnwij].[usr:Calculation_275001074885734417:ok]' value='center' />
+          </style-rule>
+          <style-rule element='label'>
+            <format attr='text-format' field='[federated.1ydt45j0lul06k1fg2c3h1dgnwij].[usr:Calculation_275001074885734417:ok]' value='C3082%' />
+            <format attr='text-align' value='left' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <text column='[federated.1ydt45j0lul06k1fg2c3h1dgnwij].[usr:Calculation_275001074885734417:ok]' />
+            </encodings>
+            <customized-label>
+              <formatted-text>
+                <run fontsize='12'>Total Price in Carrefour:</run>
+                <run>Æ </run>
+                <run bold='true' fontsize='14'><![CDATA[<[federated.1ydt45j0lul06k1fg2c3h1dgnwij].[usr:Calculation_275001074885734417:ok]>]]></run>
+              </formatted-text>
+            </customized-label>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='mark-labels-show' value='true' />
+              </style-rule>
+              <style-rule element='pane'>
+                <format attr='minwidth' value='-1' />
+                <format attr='maxwidth' value='-1' />
+                <format attr='minheight' value='-1' />
+                <format attr='maxheight' value='-1' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows />
+        <cols />
+      </table>
+      <simple-id uuid='{D490902D-D8CE-4357-9B94-476F726034AC}' />
+    </worksheet>
+    <worksheet name='Price_Total_Eroski'>
+      <layout-options>
+        <title>
+          <formatted-text />
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='detection+ (proyecto)' name='federated.1ydt45j0lul06k1fg2c3h1dgnwij' />
+          </datasources>
+          <datasource-dependencies datasource='federated.1ydt45j0lul06k1fg2c3h1dgnwij'>
+            <column caption='Cantidad_Comprar' datatype='real' name='[Calculation_1376131181391560704]' role='measure' type='ordinal'>
+              <calculation class='tableau' formula='IF [sum_qty_pieces_wished]-[qty_detected] &lt;= 0&#13;&#10;THEN 0&#13;&#10;ELSE [sum_qty_pieces_wished]-[qty_detected]&#13;&#10;END' />
+            </column>
+            <column caption='PricexPiece_E' datatype='real' name='[Calculation_275001074609086472]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='[min_precio_kg (Consulta SQL personalizada1)]/[qty_pieces (equivalencies3)]' />
+            </column>
+            <column caption='SUM([PricexPiece_E]*[Cantidad_Comprar])' datatype='real' name='[Calculation_275001074885185552]' role='measure' type='quantitative' user:unnamed='Precio_Total_Eroski'>
+              <calculation class='tableau' formula='SUM([Calculation_275001074609086472]*[Calculation_1376131181391560704])' />
+            </column>
+            <column caption='Image Url' datatype='string' name='[image_url]' role='dimension' type='nominal' />
+            <column datatype='real' name='[min_precio_kg (Consulta SQL personalizada1)]' role='measure' type='quantitative' />
+            <column caption='Qty Detected' datatype='real' name='[qty_detected]' role='measure' type='quantitative' />
+            <column caption='Qty Pieces (Equivalencies3)' datatype='real' name='[qty_pieces (equivalencies3)]' role='measure' type='quantitative' />
+            <column datatype='real' name='[sum_qty_pieces_wished]' role='measure' type='quantitative' />
+            <column-instance column='[Calculation_275001074885185552]' derivation='User' name='[usr:Calculation_275001074885185552:ok]' pivot='key' type='ordinal' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.1ydt45j0lul06k1fg2c3h1dgnwij].[Action (Image Url)]'>
+            <groupfilter function='member' level='[image_url]' member='&quot;https://storage.googleapis.com/kcp-bucket-01/datos_images_out/detection_31.jpg&quot;' user:ui-action-filter='[Action3_41765AECE8C843209D1570654E0EDF4E]' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+          </filter>
+          <slices>
+            <column>[federated.1ydt45j0lul06k1fg2c3h1dgnwij].[Action (Image Url)]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='cell'>
+            <format attr='height' value='36' />
+            <format attr='width' value='262' />
+            <format attr='text-format' field='[federated.1ydt45j0lul06k1fg2c3h1dgnwij].[usr:Calculation_275001074885185552:ok]' value='C3082%' />
+            <format attr='vertical-align' field='[federated.1ydt45j0lul06k1fg2c3h1dgnwij].[usr:Calculation_275001074885185552:ok]' value='center' />
+            <format attr='text-align' field='[federated.1ydt45j0lul06k1fg2c3h1dgnwij].[usr:Calculation_275001074885185552:ok]' value='center' />
+          </style-rule>
+          <style-rule element='header'>
+            <format attr='background-color' field='[federated.1ydt45j0lul06k1fg2c3h1dgnwij].[usr:Calculation_275001074885185552:ok]' value='#ffffff' />
+            <format attr='background-color' data-class='subtotal' scope='cols' value='#000000' />
+            <format attr='text-align' data-class='subtotal' field='[federated.1ydt45j0lul06k1fg2c3h1dgnwij].[usr:Calculation_275001074885185552:ok]' value='center' />
+          </style-rule>
+          <style-rule element='label'>
+            <format attr='text-format' field='[federated.1ydt45j0lul06k1fg2c3h1dgnwij].[usr:Calculation_275001074885185552:ok]' value='c#,##0.00&quot; €&quot;;-#,##0.00&quot; €&quot;' />
+            <format attr='text-align' field='[federated.1ydt45j0lul06k1fg2c3h1dgnwij].[usr:Calculation_275001074885185552:ok]' value='left' />
+            <format attr='vertical-align' field='[federated.1ydt45j0lul06k1fg2c3h1dgnwij].[usr:Calculation_275001074885185552:ok]' value='center' />
+          </style-rule>
+          <style-rule element='pane'>
+            <format attr='background-color' data-class='subtotal' scope='cols' value='#000000' />
+          </style-rule>
+          <style-rule element='worksheet'>
+            <format attr='display-field-labels' scope='rows' value='false' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <text column='[federated.1ydt45j0lul06k1fg2c3h1dgnwij].[usr:Calculation_275001074885185552:ok]' />
+            </encodings>
+            <customized-label>
+              <formatted-text>
+                <run fontsize='12'>Total Price in Eroski:</run>
+                <run>Æ </run>
+                <run bold='true' fontsize='14'><![CDATA[<[federated.1ydt45j0lul06k1fg2c3h1dgnwij].[usr:Calculation_275001074885185552:ok]>]]></run>
+              </formatted-text>
+            </customized-label>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='mark-labels-show' value='true' />
+              </style-rule>
+              <style-rule element='pane'>
+                <format attr='minheight' value='-1' />
+                <format attr='maxheight' value='-1' />
+                <format attr='minwidth' value='-1' />
+                <format attr='maxwidth' value='-1' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows />
+        <cols />
+      </table>
+      <simple-id uuid='{6551C079-DB48-492E-B18E-10E5202D9108}' />
+    </worksheet>
+    <worksheet name='Shoplist_Graph'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run fontcolor='#555555' fontname='Showcard Gothic' fontsize='12'>Shoping list</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='detection+ (proyecto)' name='federated.1ydt45j0lul06k1fg2c3h1dgnwij' />
+          </datasources>
+          <datasource-dependencies datasource='federated.1ydt45j0lul06k1fg2c3h1dgnwij'>
+            <column caption='Cantidad_Comprar' datatype='real' name='[Calculation_1376131181391560704]' role='measure' type='ordinal'>
+              <calculation class='tableau' formula='IF [sum_qty_pieces_wished]-[qty_detected] &lt;= 0&#13;&#10;THEN 0&#13;&#10;ELSE [sum_qty_pieces_wished]-[qty_detected]&#13;&#10;END' />
+            </column>
+            <column caption='sum_qty_detected_nonulos' datatype='real' name='[Calculation_1376131182430748678]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='IFNULL([sum_qty_detected],0)' />
+            </column>
+            <column caption='Image Url' datatype='string' name='[image_url]' role='dimension' type='nominal' />
+            <column-instance column='[product (Consulta SQL personalizada2)]' derivation='None' name='[none:product (Consulta SQL personalizada2):nk]' pivot='key' type='nominal' />
+            <column datatype='string' name='[product (Consulta SQL personalizada2)]' role='dimension' type='nominal' />
+            <column caption='Product' datatype='string' name='[product]' role='dimension' type='nominal' />
+            <column caption='Qty Detected' datatype='real' name='[qty_detected]' role='measure' type='quantitative' />
+            <column-instance column='[Calculation_1376131181391560704]' derivation='Sum' name='[sum:Calculation_1376131181391560704:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Calculation_1376131182430748678]' derivation='Sum' name='[sum:Calculation_1376131182430748678:qk]' pivot='key' type='quantitative' />
+            <column datatype='real' name='[sum_qty_detected]' role='measure' type='quantitative' />
+            <column datatype='real' name='[sum_qty_pieces_wished]' role='measure' type='quantitative' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.1ydt45j0lul06k1fg2c3h1dgnwij].[:Measure Names]'>
+            <groupfilter function='union' user:op='manual'>
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[federated.1ydt45j0lul06k1fg2c3h1dgnwij].[sum:Calculation_1376131181391560704:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[federated.1ydt45j0lul06k1fg2c3h1dgnwij].[sum:Calculation_1376131182430748678:qk]&quot;' />
+            </groupfilter>
+          </filter>
+          <filter class='categorical' column='[federated.1ydt45j0lul06k1fg2c3h1dgnwij].[Action (Image Url)]'>
+            <groupfilter function='member' level='[image_url]' member='&quot;https://storage.googleapis.com/kcp-bucket-01/datos_images_out/detection_31.jpg&quot;' user:ui-action-filter='[Action3_41765AECE8C843209D1570654E0EDF4E]' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+          </filter>
+          <filter class='categorical' column='[federated.1ydt45j0lul06k1fg2c3h1dgnwij].[Action (Image Url,Product)]'>
+            <groupfilter function='crossjoin' user:ui-action-filter='[Action3_41765AECE8C843209D1570654E0EDF4E]' user:ui-enumeration='all' user:ui-marker='enumerate'>
+              <groupfilter function='level-members' level='[image_url]' />
+              <groupfilter function='level-members' level='[product]' />
+            </groupfilter>
+          </filter>
+          <slices>
+            <column>[federated.1ydt45j0lul06k1fg2c3h1dgnwij].[:Measure Names]</column>
+            <column>[federated.1ydt45j0lul06k1fg2c3h1dgnwij].[Action (Image Url,Product)]</column>
+            <column>[federated.1ydt45j0lul06k1fg2c3h1dgnwij].[Action (Image Url)]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <format attr='title' class='0' field='[federated.1ydt45j0lul06k1fg2c3h1dgnwij].[Multiple Values]' scope='rows' value='Numb. pieces' />
+          </style-rule>
+          <style-rule element='cell'>
+            <format attr='text-format' field='[federated.1ydt45j0lul06k1fg2c3h1dgnwij].[Multiple Values]' value='N' />
+          </style-rule>
+          <style-rule element='worksheet'>
+            <format attr='display-field-labels' scope='cols' value='false' />
+          </style-rule>
+          <style-rule element='legend-title-text'>
+            <format attr='color' field='[federated.1ydt45j0lul06k1fg2c3h1dgnwij].[:Measure Names]' value='Quantity of products'>
+              <formatted-text>
+                <run>Quantity of products</run>
+              </formatted-text>
+            </format>
+          </style-rule>
+        </style>
+        <panes>
+          <pane id='4' selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Bar' />
+            <encodings>
+              <color column='[federated.1ydt45j0lul06k1fg2c3h1dgnwij].[:Measure Names]' />
+              <text column='[federated.1ydt45j0lul06k1fg2c3h1dgnwij].[Multiple Values]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='mark-labels-show' value='true' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[federated.1ydt45j0lul06k1fg2c3h1dgnwij].[Multiple Values]</rows>
+        <cols>[federated.1ydt45j0lul06k1fg2c3h1dgnwij].[none:product (Consulta SQL personalizada2):nk]</cols>
+      </table>
+      <simple-id uuid='{CD4C695A-56D3-48BA-83E9-64098603FA33}' />
+    </worksheet>
+  </worksheets>
+  <dashboards>
+    <dashboard name='Dashboard'>
+      <style />
+      <size maxheight='800' maxwidth='1000' minheight='800' minwidth='1000' />
+      <zones>
+        <zone _.fcp.SetMembershipControl.false...type='layout-basic' _.fcp.SetMembershipControl.true...type-v2='layout-basic' h='100000' id='2' w='100000' x='0' y='0'>
+          <zone _.fcp.SetMembershipControl.false...type='layout-flow' _.fcp.SetMembershipControl.true...type-v2='layout-flow' h='30500' id='6' param='horz' w='80100' x='800' y='5000'>
+            <zone _.fcp.SetMembershipControl.false...type='layout-flow' _.fcp.SetMembershipControl.true...type-v2='layout-flow' fixed-size='177' h='30500' id='43' is-fixed='true' param='horz' w='17700' x='800' y='5000' />
+            <zone fixed-size='159' h='30500' id='12' is-fixed='true' name='Detection' w='16700' x='18500' y='5000'>
+              <layout-cache fixed-size-h='372' type-h='fixed' type-w='fixed' />
+              <zone-style>
+                <format attr='border-color' value='#000000' />
+                <format attr='border-style' value='none' />
+                <format attr='border-width' value='0' />
+                <format attr='margin' value='4' />
+              </zone-style>
+            </zone>
+            <zone _.fcp.SetMembershipControl.false...type='empty' _.fcp.SetMembershipControl.true...type-v2='empty' fixed-size='78' h='30500' id='45' is-fixed='true' w='8600' x='35200' y='5000'>
+              <zone-style>
+                <format attr='border-color' value='#000000' />
+                <format attr='border-style' value='none' />
+                <format attr='border-width' value='0' />
+                <format attr='margin' value='4' />
+              </zone-style>
+            </zone>
+            <zone _.fcp.SetMembershipControl.false...type='layout-flow' _.fcp.SetMembershipControl.true...type-v2='layout-flow' h='30500' id='20' layout-strategy-id='distribute-evenly' param='horz' w='37100' x='43800' y='5000'>
+              <zone _.fcp.SetMembershipControl.false...type='web' _.fcp.SetMembershipControl.true...type-v2='web' forceUpdate='' h='30500' id='21' param='https://storage.googleapis.com/kcp-bucket-01/datos_images_out/detection_31.jpg' w='37100' x='43800' y='5000'>
+                <zone-style>
+                  <format attr='border-color' value='#000000' />
+                  <format attr='border-style' value='none' />
+                  <format attr='border-width' value='0' />
+                  <format attr='margin' value='4' />
+                </zone-style>
+              </zone>
+            </zone>
+          </zone>
+          <zone _.fcp.SetMembershipControl.false...type='layout-flow' _.fcp.SetMembershipControl.true...type-v2='layout-flow' h='21125' id='7' param='vert' w='98400' x='800' y='35500'>
+            <zone h='21125' id='13' name='Shoplist_Graph' w='98400' x='800' y='35500'>
+              <layout-cache minheight='156' type-h='scalable' type-w='fixed' />
+              <zone-style>
+                <format attr='border-color' value='#000000' />
+                <format attr='border-style' value='none' />
+                <format attr='border-width' value='0' />
+                <format attr='margin' value='4' />
+              </zone-style>
+            </zone>
+          </zone>
+          <zone _.fcp.SetMembershipControl.false...type='layout-flow' _.fcp.SetMembershipControl.true...type-v2='layout-flow' h='35000' id='9' layout-strategy-id='distribute-evenly' param='vert' w='98400' x='800' y='56625'>
+            <zone fixed-size='205' h='35000' id='15' is-fixed='true' name='Price_E&amp;C' w='98400' x='800' y='56625'>
+              <layout-cache type-h='fixed' type-w='fixed' />
+              <zone-style>
+                <format attr='border-color' value='#000000' />
+                <format attr='border-style' value='none' />
+                <format attr='border-width' value='0' />
+                <format attr='margin' value='4' />
+              </zone-style>
+            </zone>
+          </zone>
+          <zone _.fcp.SetMembershipControl.false...type='layout-flow' _.fcp.SetMembershipControl.true...type-v2='layout-flow' h='7375' id='11' layout-strategy-id='distribute-evenly' param='horz' w='49200' x='50000' y='91625'>
+            <zone h='7375' id='17' name='Price_Total_Carrefour' w='49200' x='50000' y='91625'>
+              <layout-cache fixed-size-h='50' fixed-size-w='481' type-h='fixed' type-w='fixed' />
+              <zone-style>
+                <format attr='border-color' value='#000000' />
+                <format attr='border-style' value='none' />
+                <format attr='border-width' value='0' />
+                <format attr='margin' value='4' />
+              </zone-style>
+            </zone>
+          </zone>
+          <zone h='7375' id='16' name='Price_Total_Eroski' w='49200' x='800' y='91625'>
+            <zone-style>
+              <format attr='border-color' value='#000000' />
+              <format attr='border-style' value='none' />
+              <format attr='border-width' value='0' />
+              <format attr='margin' value='4' />
+            </zone-style>
+          </zone>
+          <zone _.fcp.SetMembershipControl.false...type='text' _.fcp.SetMembershipControl.true...type-v2='text' forceUpdate='true' h='4000' id='23' w='98400' x='800' y='1000'>
+            <formatted-text>
+              <run bold='true' fontalignment='1' fontcolor='#f28e2b' fontname='Showcard Gothic' fontsize='22'>Food detection</run>
+            </formatted-text>
+            <zone-style>
+              <format attr='border-color' value='#000000' />
+              <format attr='border-style' value='none' />
+              <format attr='border-width' value='0' />
+              <format attr='margin' value='4' />
+            </zone-style>
+          </zone>
+          <zone _.fcp.SetMembershipControl.false...type='empty' _.fcp.SetMembershipControl.true...type-v2='empty' h='30500' id='44' w='18300' x='80900' y='5000'>
+            <zone-style>
+              <format attr='border-color' value='#000000' />
+              <format attr='border-style' value='none' />
+              <format attr='border-width' value='0' />
+              <format attr='margin' value='4' />
+            </zone-style>
+          </zone>
+          <zone-style>
+            <format attr='border-color' value='#000000' />
+            <format attr='border-style' value='none' />
+            <format attr='border-width' value='0' />
+            <format attr='margin' value='8' />
+          </zone-style>
+        </zone>
+        <zone _.fcp.SetMembershipControl.false...type='color' _.fcp.SetMembershipControl.true...type-v2='color' h='7375' id='14' name='Shoplist_Graph' pane-specification-id='4' param='[federated.1ydt45j0lul06k1fg2c3h1dgnwij].[:Measure Names]' w='14800' x='85800' y='31500' />
+      </zones>
+      <devicelayouts>
+        <devicelayout auto-generated='true' name='Phone'>
+          <size maxheight='1200' minheight='1200' sizing-mode='vscroll' />
+          <zones>
+            <zone _.fcp.SetMembershipControl.false...type='layout-basic' _.fcp.SetMembershipControl.true...type-v2='layout-basic' h='100000' id='60' w='100000' x='0' y='0'>
+              <zone _.fcp.SetMembershipControl.false...type='layout-flow' _.fcp.SetMembershipControl.true...type-v2='layout-flow' h='98000' id='59' param='vert' w='98400' x='800' y='1000'>
+                <zone _.fcp.SetMembershipControl.false...type='text' _.fcp.SetMembershipControl.true...type-v2='text' forceUpdate='true' h='4000' id='23' w='98400' x='800' y='1000'>
+                  <formatted-text>
+                    <run bold='true' fontalignment='1' fontcolor='#f28e2b' fontname='Showcard Gothic' fontsize='22'>Food detection</run>
+                  </formatted-text>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='236' h='30500' id='12' is-fixed='true' name='Detection' w='16700' x='18500' y='5000'>
+                  <layout-cache fixed-size-h='372' type-h='fixed' type-w='fixed' />
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone _.fcp.SetMembershipControl.false...type='web' _.fcp.SetMembershipControl.true...type-v2='web' fixed-size='236' forceUpdate='' h='30500' id='21' is-fixed='true' param='https://storage.googleapis.com/kcp-bucket-01/datos_images_out/detection_31.jpg' w='37100' x='43800' y='5000'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='161' h='21125' id='13' is-fixed='true' name='Shoplist_Graph' w='98400' x='800' y='35500'>
+                  <layout-cache minheight='156' type-h='scalable' type-w='fixed' />
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone _.fcp.SetMembershipControl.false...type='color' _.fcp.SetMembershipControl.true...type-v2='color' h='7375' id='14' name='Shoplist_Graph' pane-specification-id='4' param='[federated.1ydt45j0lul06k1fg2c3h1dgnwij].[:Measure Names]' w='14800' x='85800' y='31500'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='272' h='35000' id='15' is-fixed='true' name='Price_E&amp;C' w='98400' x='800' y='56625'>
+                  <layout-cache type-h='fixed' type-w='fixed' />
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='51' h='7375' id='16' is-fixed='true' name='Price_Total_Eroski' w='49200' x='800' y='91625'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='51' h='7375' id='17' is-fixed='true' name='Price_Total_Carrefour' w='49200' x='50000' y='91625'>
+                  <layout-cache fixed-size-h='50' fixed-size-w='481' type-h='fixed' type-w='fixed' />
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+              </zone>
+              <zone-style>
+                <format attr='border-color' value='#000000' />
+                <format attr='border-style' value='none' />
+                <format attr='border-width' value='0' />
+                <format attr='margin' value='8' />
+              </zone-style>
+            </zone>
+          </zones>
+        </devicelayout>
+      </devicelayouts>
+      <simple-id uuid='{8122D225-0747-495E-9121-EEF4C4BD4EE2}' />
+    </dashboard>
+  </dashboards>
+  <windows source-height='2'>
+    <window class='worksheet' name='Detection'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{BC6B6BE6-9C60-40F3-A289-551630DEFBCD}' />
+    </window>
+    <window class='worksheet' name='Price_E&amp;C'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='175'>
+            <card pane-specification-id='1' param='[federated.1ydt45j0lul06k1fg2c3h1dgnwij].[:Measure Names]' type='color' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{16253BEE-CA0D-4090-BD01-4FCFA533C6A8}' />
+    </window>
+    <window class='worksheet' name='Shoplist_Graph'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+            <card type='measures' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='175'>
+            <card pane-specification-id='4' param='[federated.1ydt45j0lul06k1fg2c3h1dgnwij].[:Measure Names]' type='color' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{06B5DF65-0AF5-4EF0-81D8-0CBF49CE78CF}' />
+    </window>
+    <window class='worksheet' name='Price_Total_Eroski'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{43E98E16-1175-426E-8B8D-2F5296CB98A5}' />
+    </window>
+    <window class='worksheet' name='Price_Total_Carrefour'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{44AD1CB3-8494-41A6-9F85-618582D87F53}' />
+    </window>
+    <window class='dashboard' maximized='true' name='Dashboard'>
+      <viewpoints>
+        <viewpoint name='Detection'>
+          <selection-collection>
+            <node-selection select-tuples='false'>
+              <oriented-node-reference orientation='vertical'>
+                <node-reference>
+                  <fields>
+                    <field>[federated.1ydt45j0lul06k1fg2c3h1dgnwij].[attr:date_created:ok]</field>
+                  </fields>
+                  <multibucket>
+                    <bucket>#2022-03-22#</bucket>
+                  </multibucket>
+                </node-reference>
+                <page-reference />
+              </oriented-node-reference>
+            </node-selection>
+          </selection-collection>
+        </viewpoint>
+        <viewpoint name='Price_E&amp;C' />
+        <viewpoint name='Price_Total_Carrefour' />
+        <viewpoint name='Price_Total_Eroski'>
+          <zoom type='fit-width' />
+        </viewpoint>
+        <viewpoint name='Shoplist_Graph'>
+          <zoom type='entire-view' />
+        </viewpoint>
+      </viewpoints>
+      <active id='12' />
+      <simple-id uuid='{458E3AFD-CD40-4E9D-A189-2A6EF0DAD617}' />
+    </window>
+  </windows>
+  <thumbnails>
+    <thumbnail height='192' name='Dashboard' width='192'>
+      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
+    </thumbnail>
+  </thumbnails>
+</workbook>
