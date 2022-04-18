@@ -1,0 +1,9 @@
+potato
+orange
+pineapple
+apple
+lemon
+pear
+banana
+pepper
+carrot
