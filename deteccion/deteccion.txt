@@ -1,1 +1,20 @@
 
+El algoritomos de detección ha sido desarrollado con visual studio code y google colab.
+
+Para ponerlo en produccion sea utilizado GCP
+
+*	Se creó en  AI platform un notebook llamado kc-pf-object-detection
+*	Se creó una maquina virtual en computer engine
+*	En firewall creamos una regla para admitir todo el tráfico desde internet
+*	En Direcciones ip externas hacemos fija la dirección IP de la máquina virtual
+
+El programa de detección utiliza la libreía flask para implementar un backend, el cual se queda activo esperando recibir una petición POST de un cliente RES.
+
+* Con un cliente RES se envía la imagen en base64 a la dirección IP habilitada
+* El servicio realiza las siguientes tareas:
+     * Realizar la detección de objetos
+     * Generar un csv, con los objetos y su número
+     * Enviar al cloud store la imagen con la detección y el csv, para que sea consumido por la por la parte del programa que cálcula el coste y los alimentos que hay 
+       que comprar.
+     
+
