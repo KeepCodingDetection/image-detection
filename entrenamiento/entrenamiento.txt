@@ -1,1 +1,16 @@
 
+Para el proceso de entrenamiento se han utilizado las siguientes herramientas:
+
+Google colab
+Roboflow (https://roboflow.ai)
+Weights & Biases (https://wandb.ai/)
+Tensorboard
+Google drive
+
+Antes de realizar el entrenamiento y el test hemos realizado el etiquetado de las imágenes.
+
+Se han etiquetado imágenes de los siguientes elementos: potato, orange, pineapple, apple, lemon, pear, banana, pepper y carrot
+Al menos hay 70 imágenes de cada clase
+En total hay cerca de 700 imágenes
+El etiquetado se ha realizado con la herramienta labelImg, utilizando el formato YOLO
+Para la creación del dataset de entrenamiento se ha utilizado la herramienta roboflow (http://roboflow.ai) El dataset original se ha dividido en 3 partes: 70% para train, 20 % para evaluación y 10% para test
