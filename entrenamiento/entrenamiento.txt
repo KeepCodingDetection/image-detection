@@ -7,7 +7,12 @@ Weights & Biases (https://wandb.ai/)
 Tensorboard
 Google drive
 
-Antes de realizar el entrenamiento y el test hemos realizado el etiquetado de las imágenes.
+Antes de realizar el entrenamiento y el test hemos realizado el etiquetado de las imágenes. Se trabajó con los siguientes fuentes de datos:
+
+* https://github.com/marcusklasson/GroceryStoreDataset
+*	https://www.kaggle.com/kritikseth/fruit-and-vegetable-image-recognition
+*	https://www.flickr.com/
+
 
 Se han etiquetado imágenes de los siguientes elementos: potato, orange, pineapple, apple, lemon, pear, banana, pepper y carrot
 Al menos hay 170 imágenes de cada clase
