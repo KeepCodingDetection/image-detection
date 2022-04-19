@@ -105,8 +105,7 @@ def ges_csv(ipath_base,ndeteccion,det_result):
   fcsv.close()
   
 
-  #1,potato,2,https://storage.googleapis.com/kcp-bucket-01/datos_images_out/detection_1.png,2022-03-28
-  
+   
 
 #programa de gestion de imagenes
 
