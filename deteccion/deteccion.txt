@@ -1,6 +1,10 @@
 
 El algoritomos de detección ha sido desarrollado con visual studio code y google colab.
 
+Se han utilizado principalmente dos librería para el desarrollo del programa
+* OpenCV
+* Flask
+
 Para ponerlo en produccion sea utilizado GCP
 
 *	Se creó en  AI platform un notebook llamado kc-pf-object-detection
@@ -17,4 +21,3 @@ El programa de detección utiliza la libreía flask para implementar un backend,
      * Enviar al cloud store la imagen con la detección y el csv, para que sea consumido por la por la parte del programa que cálcula el coste y los alimentos que hay 
        que comprar.
      
-
